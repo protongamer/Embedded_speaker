@@ -1,0 +1,485 @@
+
+BM64_controller.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000074  00800100  0000020e  00000282  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000020e  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  000002f6  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000328  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000098  00000000  00000000  00000364  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000cef  00000000  00000000  000003fc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000906  00000000  00000000  000010eb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000004c2  00000000  00000000  000019f1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  0000012c  00000000  00000000  00001eb4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    0000062a  00000000  00000000  00001fe0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000264  00000000  00000000  0000260a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000090  00000000  00000000  0000286e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	1d c0       	rjmp	.+58     	; 0x3c <__ctors_end>
+   2:	2f c0       	rjmp	.+94     	; 0x62 <__bad_interrupt>
+   4:	2e c0       	rjmp	.+92     	; 0x62 <__bad_interrupt>
+   6:	2d c0       	rjmp	.+90     	; 0x62 <__bad_interrupt>
+   8:	2c c0       	rjmp	.+88     	; 0x62 <__bad_interrupt>
+   a:	2b c0       	rjmp	.+86     	; 0x62 <__bad_interrupt>
+   c:	2a c0       	rjmp	.+84     	; 0x62 <__bad_interrupt>
+   e:	29 c0       	rjmp	.+82     	; 0x62 <__bad_interrupt>
+  10:	28 c0       	rjmp	.+80     	; 0x62 <__bad_interrupt>
+  12:	27 c0       	rjmp	.+78     	; 0x62 <__bad_interrupt>
+  14:	26 c0       	rjmp	.+76     	; 0x62 <__bad_interrupt>
+  16:	25 c0       	rjmp	.+74     	; 0x62 <__bad_interrupt>
+  18:	24 c0       	rjmp	.+72     	; 0x62 <__bad_interrupt>
+  1a:	23 c0       	rjmp	.+70     	; 0x62 <__bad_interrupt>
+  1c:	22 c0       	rjmp	.+68     	; 0x62 <__bad_interrupt>
+  1e:	21 c0       	rjmp	.+66     	; 0x62 <__bad_interrupt>
+  20:	20 c0       	rjmp	.+64     	; 0x62 <__bad_interrupt>
+  22:	1f c0       	rjmp	.+62     	; 0x62 <__bad_interrupt>
+  24:	1e c0       	rjmp	.+60     	; 0x62 <__bad_interrupt>
+  26:	1d c0       	rjmp	.+58     	; 0x62 <__bad_interrupt>
+  28:	1c c0       	rjmp	.+56     	; 0x62 <__bad_interrupt>
+  2a:	1b c0       	rjmp	.+54     	; 0x62 <__bad_interrupt>
+  2c:	1a c0       	rjmp	.+52     	; 0x62 <__bad_interrupt>
+  2e:	19 c0       	rjmp	.+50     	; 0x62 <__bad_interrupt>
+  30:	18 c0       	rjmp	.+48     	; 0x62 <__bad_interrupt>
+  32:	17 c0       	rjmp	.+46     	; 0x62 <__bad_interrupt>
+  34:	16 c0       	rjmp	.+44     	; 0x62 <__bad_interrupt>
+  36:	15 c0       	rjmp	.+42     	; 0x62 <__bad_interrupt>
+  38:	14 c0       	rjmp	.+40     	; 0x62 <__bad_interrupt>
+  3a:	13 c0       	rjmp	.+38     	; 0x62 <__bad_interrupt>
+
+0000003c <__ctors_end>:
+  3c:	11 24       	eor	r1, r1
+  3e:	1f be       	out	0x3f, r1	; 63
+  40:	cf ef       	ldi	r28, 0xFF	; 255
+  42:	d2 e0       	ldi	r29, 0x02	; 2
+  44:	de bf       	out	0x3e, r29	; 62
+  46:	cd bf       	out	0x3d, r28	; 61
+
+00000048 <__do_copy_data>:
+  48:	11 e0       	ldi	r17, 0x01	; 1
+  4a:	a0 e0       	ldi	r26, 0x00	; 0
+  4c:	b1 e0       	ldi	r27, 0x01	; 1
+  4e:	ee e0       	ldi	r30, 0x0E	; 14
+  50:	f2 e0       	ldi	r31, 0x02	; 2
+  52:	02 c0       	rjmp	.+4      	; 0x58 <__do_copy_data+0x10>
+  54:	05 90       	lpm	r0, Z+
+  56:	0d 92       	st	X+, r0
+  58:	a4 37       	cpi	r26, 0x74	; 116
+  5a:	b1 07       	cpc	r27, r17
+  5c:	d9 f7       	brne	.-10     	; 0x54 <__do_copy_data+0xc>
+  5e:	02 d0       	rcall	.+4      	; 0x64 <main>
+  60:	d4 c0       	rjmp	.+424    	; 0x20a <_exit>
+
+00000062 <__bad_interrupt>:
+  62:	ce cf       	rjmp	.-100    	; 0x0 <__vectors>
+
+00000064 <main>:
+
+
+int main(void)
+{
+	
+	Enable_WatchDog(SET_128K_CYCLES);
+  64:	80 e2       	ldi	r24, 0x20	; 32
+  66:	52 d0       	rcall	.+164    	; 0x10c <_Z15Enable_WatchDogh>
+	Reset_WDT();
+  68:	a8 95       	wdr
+	
+	showResetCause(); //Read what cause a reset on system ?
+  6a:	54 d0       	rcall	.+168    	; 0x114 <_Z14showResetCausev>
+	
+	
+	USART_Init_0(BAUDRATE_VALUE); //Godlike tool is now ready (Well I hope...)
+  6c:	83 e3       	ldi	r24, 0x33	; 51
+  6e:	90 e0       	ldi	r25, 0x00	; 0
+  70:	14 d0       	rcall	.+40     	; 0x9a <_Z12USART_Init_0j>
+	
+	if(!checkEEPROM()) //check if our value respect the normalized values
+  72:	9c d0       	rcall	.+312    	; 0x1ac <_Z11checkEEPROMv>
+  74:	81 11       	cpse	r24, r1
+  76:	07 c0       	rjmp	.+14     	; 0x86 <main+0x22>
+	{
+		//try to put warning sequence here !
+		USART_Init_1(H9600_PRESET); //set default preset
+  78:	83 e3       	ldi	r24, 0x33	; 51
+  7a:	90 e0       	ldi	r25, 0x00	; 0
+  7c:	20 d0       	rcall	.+64     	; 0xbe <_Z12USART_Init_1j>
+		writeEEPROM(SERIAL_PORT_PRESET, H9600_PRESET); //write to avoid this issue (maybe remove this instruction)
+  7e:	63 e3       	ldi	r22, 0x33	; 51
+  80:	80 e0       	ldi	r24, 0x00	; 0
+  82:	86 d0       	rcall	.+268    	; 0x190 <_Z11writeEEPROMhh>
+  84:	04 c0       	rjmp	.+8      	; 0x8e <main+0x2a>
+	}
+	else
+	{
+		USART_Init_1(readEEPROM(SERIAL_PORT_PRESET)); 
+  86:	80 e0       	ldi	r24, 0x00	; 0
+  88:	79 d0       	rcall	.+242    	; 0x17c <_Z10readEEPROMh>
+  8a:	90 e0       	ldi	r25, 0x00	; 0
+  8c:	18 d0       	rcall	.+48     	; 0xbe <_Z12USART_Init_1j>
+		/*USART_Transmit(0x41 + chr); //Gonna try a madness, like we said in french "une dinguerie"
+		USART_Transmit(0x0D); //Gonna try a madness, like we said in french "une dinguerie"
+		USART_Transmit(0x0A); //Gonna try a madness, like we said in french "une dinguerie"
+		*/
+		
+		print("EEA en Morse donne ---> . . ._\r\n"); //Try to call an Aware function
+  8e:	87 e0       	ldi	r24, 0x07	; 7
+  90:	91 e0       	ldi	r25, 0x01	; 1
+  92:	27 d0       	rcall	.+78     	; 0xe2 <_Z5printPKc>
+		USART_Transmit_0(0x42);
+  94:	82 e4       	ldi	r24, 0x42	; 66
+  96:	0c d0       	rcall	.+24     	; 0xb0 <_Z16USART_Transmit_0h>
+  98:	ff cf       	rjmp	.-2      	; 0x98 <main+0x34>
+
+0000009a <_Z12USART_Init_0j>:
+{
+	// En attente du flag RXC (Receive Complete p.181)
+	while ( !(UCSR1A & (1<<RXC1)) );
+	//Lecture du buffer dans le registre UDR
+	return UDR1;
+}
+  9a:	90 93 82 00 	sts	0x0082, r25	; 0x800082 <__TEXT_REGION_LENGTH__+0x7fe082>
+  9e:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__TEXT_REGION_LENGTH__+0x7fe081>
+  a2:	88 e1       	ldi	r24, 0x18	; 24
+  a4:	80 93 85 00 	sts	0x0085, r24	; 0x800085 <__TEXT_REGION_LENGTH__+0x7fe085>
+  a8:	8e e0       	ldi	r24, 0x0E	; 14
+  aa:	80 93 84 00 	sts	0x0084, r24	; 0x800084 <__TEXT_REGION_LENGTH__+0x7fe084>
+  ae:	08 95       	ret
+
+000000b0 <_Z16USART_Transmit_0h>:
+  b0:	90 91 86 00 	lds	r25, 0x0086	; 0x800086 <__TEXT_REGION_LENGTH__+0x7fe086>
+  b4:	95 ff       	sbrs	r25, 5
+  b6:	fc cf       	rjmp	.-8      	; 0xb0 <_Z16USART_Transmit_0h>
+  b8:	80 93 80 00 	sts	0x0080, r24	; 0x800080 <__TEXT_REGION_LENGTH__+0x7fe080>
+  bc:	08 95       	ret
+
+000000be <_Z12USART_Init_1j>:
+  be:	90 93 92 00 	sts	0x0092, r25	; 0x800092 <__TEXT_REGION_LENGTH__+0x7fe092>
+  c2:	80 93 91 00 	sts	0x0091, r24	; 0x800091 <__TEXT_REGION_LENGTH__+0x7fe091>
+  c6:	88 e1       	ldi	r24, 0x18	; 24
+  c8:	80 93 95 00 	sts	0x0095, r24	; 0x800095 <__TEXT_REGION_LENGTH__+0x7fe095>
+  cc:	8e e0       	ldi	r24, 0x0E	; 14
+  ce:	80 93 94 00 	sts	0x0094, r24	; 0x800094 <__TEXT_REGION_LENGTH__+0x7fe094>
+  d2:	08 95       	ret
+
+000000d4 <_Z16USART_Transmit_1h>:
+  d4:	90 91 96 00 	lds	r25, 0x0096	; 0x800096 <__TEXT_REGION_LENGTH__+0x7fe096>
+  d8:	95 ff       	sbrs	r25, 5
+  da:	fc cf       	rjmp	.-8      	; 0xd4 <_Z16USART_Transmit_1h>
+  dc:	80 93 90 00 	sts	0x0090, r24	; 0x800090 <__TEXT_REGION_LENGTH__+0x7fe090>
+  e0:	08 95       	ret
+
+000000e2 <_Z5printPKc>:
+
+
+
+
+void print(const char *c)//Try to create an Aware function
+{
+  e2:	0f 93       	push	r16
+  e4:	1f 93       	push	r17
+  e6:	cf 93       	push	r28
+  e8:	df 93       	push	r29
+  ea:	8c 01       	movw	r16, r24
+	//Un warning concerne la conversion de String const vers char*, ceci dit, ça fonctionne...
+
+	int i = 0;
+  ec:	c0 e0       	ldi	r28, 0x00	; 0
+  ee:	d0 e0       	ldi	r29, 0x00	; 0
+	
+	while(c[i] != '\0')
+  f0:	f8 01       	movw	r30, r16
+  f2:	ec 0f       	add	r30, r28
+  f4:	fd 1f       	adc	r31, r29
+  f6:	80 81       	ld	r24, Z
+  f8:	88 23       	and	r24, r24
+  fa:	19 f0       	breq	.+6      	; 0x102 <_Z5printPKc+0x20>
+	{
+	USART_Transmit_1(c[i]);
+  fc:	eb df       	rcall	.-42     	; 0xd4 <_Z16USART_Transmit_1h>
+	i++;	
+  fe:	21 96       	adiw	r28, 0x01	; 1
+{
+	//Un warning concerne la conversion de String const vers char*, ceci dit, ça fonctionne...
+
+	int i = 0;
+	
+	while(c[i] != '\0')
+ 100:	f7 cf       	rjmp	.-18     	; 0xf0 <_Z5printPKc+0xe>
+	{
+	USART_Transmit_1(c[i]);
+	i++;	
+	}	
+}
+ 102:	df 91       	pop	r29
+ 104:	cf 91       	pop	r28
+ 106:	1f 91       	pop	r17
+ 108:	0f 91       	pop	r16
+ 10a:	08 95       	ret
+
+0000010c <_Z15Enable_WatchDogh>:
+//Watch Dog Functions
+
+
+void Enable_WatchDog(uint8_t time_preset)
+{
+	MCUSR = 0; //reset status register
+ 10c:	14 be       	out	0x34, r1	; 52
+	WDTCSR = (1<<WDE) | time_preset; //Enable watchdog - and set preset on prescaler
+ 10e:	88 60       	ori	r24, 0x08	; 8
+ 110:	81 bd       	out	0x21, r24	; 33
+ 112:	08 95       	ret
+
+00000114 <_Z14showResetCausev>:
+
+
+
+
+void showResetCause(void)
+{
+ 114:	1f 93       	push	r17
+ 116:	cf 93       	push	r28
+ 118:	df 93       	push	r29
+	uint8_t resetReg = MCUSR;
+ 11a:	14 b7       	in	r17, 0x34	; 52
+	print("MCUSR : ");
+ 11c:	88 e2       	ldi	r24, 0x28	; 40
+ 11e:	91 e0       	ldi	r25, 0x01	; 1
+ 120:	e0 df       	rcall	.-64     	; 0xe2 <_Z5printPKc>
+	for(uint8_t i = 0x40; i > 0; i>>=1)
+ 122:	c0 e4       	ldi	r28, 0x40	; 64
+ 124:	cc 23       	and	r28, r28
+ 126:	31 f1       	breq	.+76     	; 0x174 <_Z14showResetCausev+0x60>
+	{
+		switch(resetReg & i)
+ 128:	dc 2f       	mov	r29, r28
+ 12a:	d1 23       	and	r29, r17
+ 12c:	d2 30       	cpi	r29, 0x02	; 2
+ 12e:	81 f0       	breq	.+32     	; 0x150 <_Z14showResetCausev+0x3c>
+ 130:	18 f4       	brcc	.+6      	; 0x138 <_Z14showResetCausev+0x24>
+ 132:	d1 30       	cpi	r29, 0x01	; 1
+ 134:	89 f0       	breq	.+34     	; 0x158 <_Z14showResetCausev+0x44>
+ 136:	13 c0       	rjmp	.+38     	; 0x15e <_Z14showResetCausev+0x4a>
+ 138:	d4 30       	cpi	r29, 0x04	; 4
+ 13a:	31 f0       	breq	.+12     	; 0x148 <_Z14showResetCausev+0x34>
+ 13c:	d8 30       	cpi	r29, 0x08	; 8
+ 13e:	79 f4       	brne	.+30     	; 0x15e <_Z14showResetCausev+0x4a>
+		{
+			case WDR_FLAG:
+			print(WDR_MESSAGE);
+ 140:	81 e3       	ldi	r24, 0x31	; 49
+ 142:	91 e0       	ldi	r25, 0x01	; 1
+ 144:	ce df       	rcall	.-100    	; 0xe2 <_Z5printPKc>
+			break;
+ 146:	0b c0       	rjmp	.+22     	; 0x15e <_Z14showResetCausev+0x4a>
+			
+			case BOR_FLAG:
+			print(BOR_MESSAGE);
+ 148:	81 e4       	ldi	r24, 0x41	; 65
+ 14a:	91 e0       	ldi	r25, 0x01	; 1
+ 14c:	ca df       	rcall	.-108    	; 0xe2 <_Z5printPKc>
+			break;
+ 14e:	07 c0       	rjmp	.+14     	; 0x15e <_Z14showResetCausev+0x4a>
+			
+			case EXR_FLAG:
+			print(EXR_MESSAGE);
+ 150:	81 e5       	ldi	r24, 0x51	; 81
+ 152:	91 e0       	ldi	r25, 0x01	; 1
+ 154:	c6 df       	rcall	.-116    	; 0xe2 <_Z5printPKc>
+			break;
+ 156:	03 c0       	rjmp	.+6      	; 0x15e <_Z14showResetCausev+0x4a>
+			
+			case POR_FLAG:
+			print(POR_MESSAGE);
+ 158:	81 e6       	ldi	r24, 0x61	; 97
+ 15a:	91 e0       	ldi	r25, 0x01	; 1
+ 15c:	c2 df       	rcall	.-124    	; 0xe2 <_Z5printPKc>
+			break;
+		}
+		if(resetReg & i)
+ 15e:	dd 23       	and	r29, r29
+ 160:	19 f0       	breq	.+6      	; 0x168 <_Z14showResetCausev+0x54>
+		print("\n\r");
+ 162:	80 e7       	ldi	r24, 0x70	; 112
+ 164:	91 e0       	ldi	r25, 0x01	; 1
+ 166:	bd df       	rcall	.-134    	; 0xe2 <_Z5printPKc>
+
+void showResetCause(void)
+{
+	uint8_t resetReg = MCUSR;
+	print("MCUSR : ");
+	for(uint8_t i = 0x40; i > 0; i>>=1)
+ 168:	8c 2f       	mov	r24, r28
+ 16a:	90 e0       	ldi	r25, 0x00	; 0
+ 16c:	95 95       	asr	r25
+ 16e:	87 95       	ror	r24
+ 170:	c8 2f       	mov	r28, r24
+ 172:	d8 cf       	rjmp	.-80     	; 0x124 <_Z14showResetCausev+0x10>
+			break;
+		}
+		if(resetReg & i)
+		print("\n\r");
+	}
+}
+ 174:	df 91       	pop	r29
+ 176:	cf 91       	pop	r28
+ 178:	1f 91       	pop	r17
+ 17a:	08 95       	ret
+
+0000017c <_Z10readEEPROMh>:
+//EEPROM Functions
+
+uint8_t readEEPROM(uint8_t addr)
+{
+	// Check if there no process on eeprom
+	while(EECR & (1<<EEPE));
+ 17c:	e1 99       	sbic	0x1c, 1	; 28
+ 17e:	fe cf       	rjmp	.-4      	; 0x17c <_Z10readEEPROMh>
+	//Put Addess
+	EEAR = addr;
+ 180:	90 e0       	ldi	r25, 0x00	; 0
+ 182:	9f bb       	out	0x1f, r25	; 31
+ 184:	8e bb       	out	0x1e, r24	; 30
+	//Start read value on eeprom address -> that stored in EEDR
+	EECR |= (1<<EERE);
+ 186:	8c b3       	in	r24, 0x1c	; 28
+ 188:	81 60       	ori	r24, 0x01	; 1
+ 18a:	8c bb       	out	0x1c, r24	; 28
+	return EEDR; 
+ 18c:	8d b3       	in	r24, 0x1d	; 29
+}
+ 18e:	08 95       	ret
+
+00000190 <_Z11writeEEPROMhh>:
+
+
+void writeEEPROM(uint8_t addr, uint8_t data)
+{
+	// Check if there no process on eeprom
+	while(EECR & (1<<EEPE));
+ 190:	e1 99       	sbic	0x1c, 1	; 28
+ 192:	fe cf       	rjmp	.-4      	; 0x190 <_Z11writeEEPROMhh>
+	//Set programming mode (Atomic mode here, operation time ~3.4ms ---> datasheet p.23)
+	EECR = (0<<EEPM1)|(0<<EEPM0);
+ 194:	1c ba       	out	0x1c, r1	; 28
+	//Put address and data
+	EEAR = addr;
+ 196:	90 e0       	ldi	r25, 0x00	; 0
+ 198:	9f bb       	out	0x1f, r25	; 31
+ 19a:	8e bb       	out	0x1e, r24	; 30
+	EEDR = data;
+ 19c:	6d bb       	out	0x1d, r22	; 29
+	//Enable Write
+	EECR |= (1<<EEMPE);
+ 19e:	8c b3       	in	r24, 0x1c	; 28
+ 1a0:	84 60       	ori	r24, 0x04	; 4
+ 1a2:	8c bb       	out	0x1c, r24	; 28
+	//Write value
+	EECR |= (1<<EEPE);
+ 1a4:	8c b3       	in	r24, 0x1c	; 28
+ 1a6:	82 60       	ori	r24, 0x02	; 2
+ 1a8:	8c bb       	out	0x1c, r24	; 28
+ 1aa:	08 95       	ret
+
+000001ac <_Z11checkEEPROMv>:
+
+
+
+
+uint8_t checkEEPROM(void)
+{
+ 1ac:	cf 93       	push	r28
+ 1ae:	df 93       	push	r29
+ 1b0:	cd b7       	in	r28, 0x3d	; 61
+ 1b2:	de b7       	in	r29, 0x3e	; 62
+ 1b4:	27 97       	sbiw	r28, 0x07	; 7
+ 1b6:	0f b6       	in	r0, 0x3f	; 63
+ 1b8:	f8 94       	cli
+ 1ba:	de bf       	out	0x3e, r29	; 62
+ 1bc:	0f be       	out	0x3f, r0	; 63
+ 1be:	cd bf       	out	0x3d, r28	; 61
+	uint8_t legalValues[] = {H2400_PRESET, H4800_PRESET, H9600_PRESET, H19200_PRESET, H38400_PRESET, H57600_PRESET, H115200_PRESET};
+ 1c0:	87 e0       	ldi	r24, 0x07	; 7
+ 1c2:	e0 e0       	ldi	r30, 0x00	; 0
+ 1c4:	f1 e0       	ldi	r31, 0x01	; 1
+ 1c6:	de 01       	movw	r26, r28
+ 1c8:	11 96       	adiw	r26, 0x01	; 1
+ 1ca:	01 90       	ld	r0, Z+
+ 1cc:	0d 92       	st	X+, r0
+ 1ce:	8a 95       	dec	r24
+ 1d0:	e1 f7       	brne	.-8      	; 0x1ca <_Z11checkEEPROMv+0x1e>
+	uint8_t check = 1;
+	uint8_t parameter = readEEPROM(SERIAL_PORT_PRESET);
+ 1d2:	80 e0       	ldi	r24, 0x00	; 0
+ 1d4:	d3 df       	rcall	.-90     	; 0x17c <_Z10readEEPROMh>
+	for(uint8_t i = 0; i < sizeof(legalValues); i++)
+ 1d6:	90 e0       	ldi	r25, 0x00	; 0
+
+
+uint8_t checkEEPROM(void)
+{
+	uint8_t legalValues[] = {H2400_PRESET, H4800_PRESET, H9600_PRESET, H19200_PRESET, H38400_PRESET, H57600_PRESET, H115200_PRESET};
+	uint8_t check = 1;
+ 1d8:	31 e0       	ldi	r19, 0x01	; 1
+	uint8_t parameter = readEEPROM(SERIAL_PORT_PRESET);
+	for(uint8_t i = 0; i < sizeof(legalValues); i++)
+ 1da:	97 30       	cpi	r25, 0x07	; 7
+ 1dc:	60 f4       	brcc	.+24     	; 0x1f6 <_Z11checkEEPROMv+0x4a>
+	{
+		if(parameter != legalValues[i])
+ 1de:	e1 e0       	ldi	r30, 0x01	; 1
+ 1e0:	f0 e0       	ldi	r31, 0x00	; 0
+ 1e2:	ec 0f       	add	r30, r28
+ 1e4:	fd 1f       	adc	r31, r29
+ 1e6:	e9 0f       	add	r30, r25
+ 1e8:	f1 1d       	adc	r31, r1
+ 1ea:	20 81       	ld	r18, Z
+ 1ec:	82 13       	cpse	r24, r18
+		check = 0;
+ 1ee:	30 e0       	ldi	r19, 0x00	; 0
+		Reset_WDT(); //need this to prevent watchdog system reset (even we have speed sequence)
+ 1f0:	a8 95       	wdr
+uint8_t checkEEPROM(void)
+{
+	uint8_t legalValues[] = {H2400_PRESET, H4800_PRESET, H9600_PRESET, H19200_PRESET, H38400_PRESET, H57600_PRESET, H115200_PRESET};
+	uint8_t check = 1;
+	uint8_t parameter = readEEPROM(SERIAL_PORT_PRESET);
+	for(uint8_t i = 0; i < sizeof(legalValues); i++)
+ 1f2:	9f 5f       	subi	r25, 0xFF	; 255
+ 1f4:	f2 cf       	rjmp	.-28     	; 0x1da <_Z11checkEEPROMv+0x2e>
+		check = 0;
+		Reset_WDT(); //need this to prevent watchdog system reset (even we have speed sequence)
+	}
+	
+	return check;
+ 1f6:	83 2f       	mov	r24, r19
+ 1f8:	27 96       	adiw	r28, 0x07	; 7
+ 1fa:	0f b6       	in	r0, 0x3f	; 63
+ 1fc:	f8 94       	cli
+ 1fe:	de bf       	out	0x3e, r29	; 62
+ 200:	0f be       	out	0x3f, r0	; 63
+ 202:	cd bf       	out	0x3d, r28	; 61
+ 204:	df 91       	pop	r29
+ 206:	cf 91       	pop	r28
+ 208:	08 95       	ret
+
+0000020a <_exit>:
+ 20a:	f8 94       	cli
+
+0000020c <__stop_program>:
+ 20c:	ff cf       	rjmp	.-2      	; 0x20c <__stop_program>
