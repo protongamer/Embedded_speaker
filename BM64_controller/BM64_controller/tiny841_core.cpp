@@ -208,3 +208,37 @@ uint8_t checkEEPROM(void)
 	
 	return check;
 }
+
+
+
+
+
+
+///////////////////////////////////
+//ADC functions
+
+
+void adc_init(uint8_t sampleRate)
+{
+	ADCSRB = (1<<ADLAR); //bit LSB bits into ADCL register -> We will only read 8 bits with ADCR registers (cause of error quantification +/-0.5LSB) (datasheet p.142 / p.147)
+	ADCSRA = sampleRate | (1<<ADEN); //enable adc and set adc frequency divider
+}
+
+
+uint8_t adc_read_8(void)
+{
+	ADCSRA |= (1<<ADSC); //start conversion
+	while(ADCSRA & (1<<ADSC)); //wait for conversion complete (datasheet p.142)
+	
+	return ADCH; //return adc conversion (8 bits)
+}
+
+uint16_t adc_read_10(void)
+{
+	uint16_t value;
+	ADCSRA |= (1<<ADSC); //start conversion
+	while(ADCSRA & (1<<ADSC)); //wait for conversion complete (datasheet p.142)
+	value = (ADCL & 0xC0) >> 6;
+	value |= (ADCH << 2);
+	return value; //return adc conversion (8 bits)
+}

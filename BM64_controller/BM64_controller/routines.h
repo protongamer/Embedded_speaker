@@ -84,4 +84,35 @@
 
 
 
+/////////////////////////////////////
+//ADC
+
+#define ADC11_PIN	(1<<MUX3) | (1<<MUX1) | (1<<MUX0)
+#define ADC10_PIN	(1<<MUX3) | (1<<MUX1)
+#define ADC8_PIN	(1<<MUX3)
+
+//Theses references don't use AREF pin
+#define SET_VCC_REFERENCE	0
+#define SET_1V1_REFERENCE	(1<<REFS0)
+#define SET_2V2_REFERENCE	(1<<REFS1)
+#define SET_4V1_REFERENCE	(1<<REFS1) | (1<<REFS0)
+
+//Gain setup
+#define SET_1_GAIN			0
+#define SET_20_GAIN			(1<<GSEL0)
+#define SET_100_GAIN		(1<<GSEL1)
+
+//Sample rate setup
+#define ADC_CK_DIV2			(1<<ADPS0)
+#define ADC_CK_DIV4			(1<<ADPS1)
+#define ADC_CK_DIV8			(1<<ADPS1) | (1<<ADPS0)
+#define ADC_CK_DIV16		(1<<ADPS2)
+#define ADC_CK_DIV32		(1<<ADPS2) | (1<<ADPS0)
+#define ADC_CK_DIV64		(1<<ADPS2) | (1<<ADPS1)
+#define ADC_CK_DIV128		(1<<ADPS2) | (1<<ADPS1) | (1<<ADPS0)
+
+/////////////////////////////////////
+
+
+
 #endif /* INCFILE1_H_ */

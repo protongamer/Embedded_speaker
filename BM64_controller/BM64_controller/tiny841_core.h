@@ -39,6 +39,16 @@ void writeEEPROM(uint8_t addr, uint8_t data);
 uint8_t checkEEPROM(void);
 
 
+
+//ADC
+#define SELECT_ADC(x)	ADMUXA = x
+#define SELECT_REFERENCE_VOLTAGE(x) ADMUXB = x
+
+void adc_init(uint8_t sampleRate);
+uint8_t adc_read_8(void);
+uint16_t adc_read_10(void);
+
+
 ///////////////////////////////////////
 
 
