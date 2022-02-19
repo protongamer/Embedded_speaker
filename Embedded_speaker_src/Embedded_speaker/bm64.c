@@ -2,7 +2,7 @@
  * bm64.cpp
  *
  * Created: 13/02/2022 13:42:19
- *  Author: gordon
+ *  Author: enzo
  */ 
 
 #include "bm64.h"
@@ -62,4 +62,48 @@ void bm64_pairing(void)
 		_delay_us(100);
 	}
 	
+}
+
+
+
+
+void bm64_sendCmd(uint8_t *buffer, uint8_t n)
+{
+	for(uint8_t i = 0; i < n; i++)
+	{
+		USART_Transmit_0(buffer[i]);
+		_delay_us(100);
+	}
+}
+
+
+
+
+
+
+int bm64_readCmd(uint8_t *buffer)
+{
+	uint8_t n = 0;
+	while( ReadIORegister(&PINA, TX_IND) == 0 )
+	{
+		buffer[n] = USART_Receive_0();
+		n++;
+	}
+	return n;
+}
+
+
+
+uint8_t bm64_checksum(uint8_t *buffer, uint8_t n)
+{
+	uint8_t chks = 0;
+	
+	for(uint8_t i = 1; i < n; i++) //skip first byte (see Audio UART doc p.7)
+	{
+		chks += buffer[i];
+	}
+	
+	chks = (~chks) + 1; 
+	
+	return chks;
 }

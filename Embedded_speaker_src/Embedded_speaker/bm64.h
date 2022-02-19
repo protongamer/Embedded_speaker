@@ -2,7 +2,7 @@
  * bm64.h
  *
  * Created: 13/02/2022 13:42:35
- *  Author: gordon
+ *  Author: enzo
  */ 
 
 #define F_CPU	8000000UL
@@ -17,7 +17,7 @@
 
 ///////////////////////////////////////
 //bm64 database
-#define BM64_MAX_BYTES		16
+#define BM64_MAX_BYTES		32
 
 #define BM64_START_BYTE		0xAA //each message, this is the first byte
 
@@ -53,13 +53,14 @@
 
 void bm64_init(void);
 void bm64_pairing(void);
-//void bm64_sendCmd(uint8_t *buffer, uint8_t n);
+void bm64_sendCmd(uint8_t *buffer, uint8_t n);
+int bm64_readCmd(uint8_t *buffer);
 //uint8_t bm64_status(void);
-//uint8_t bm64_checksum(uint8_t *buffer, uint8_t n);
+uint8_t bm64_checksum(uint8_t *buffer, uint8_t n);
 
 
-uint8_t _localStatusB_DEV;
-uint8_t _bm64Buffer[BM64_MAX_BYTES];
+//uint8_t _localStatusB_DEV;
+//uint8_t _bm64Buffer[BM64_MAX_BYTES];
 
 
 #endif /* BM64_H_ */

@@ -2,7 +2,7 @@
  * tiny841_core.h
  *
  * Created: 26/01/2022 23:39:24
- *  Author: gordon
+ *  Author: enzo
  */ 
 #include <avr/io.h>
 #include <avr/wdt.h>
@@ -61,7 +61,7 @@ uint8_t ReadIORegister(volatile void *regP, uint8_t pin);
 
 //Others
 
-#define SOFT_RESET	asm("jmp 0x0000") //Oh c'est vilain :')
+#define SOFT_RESET	asm("rjmp 0x0000") //Oh c'est vilain :')
 
 ///////////////////////////////////////
 

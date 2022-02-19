@@ -2,7 +2,7 @@
  * tiny841_core.cpp
  *
  * Created: 26/01/2022 23:31:45
- *  Author: gordon
+ *  Author: enzo
  */ 
 //////////////////////////////////////////
 //Functions
@@ -89,7 +89,10 @@ void USART_Transmit_1( uint8_t data )
 uint8_t USART_Receive_1( void )
 {
 	// En attente du flag RXC (Receive Complete p.181)
-	while ( !(UCSR1A & (1<<RXC1)) );
+	while ( !(UCSR1A & (1<<RXC1)) )
+	{
+		Reset_WDT(); //prevent watchdog reset
+	}
 	//Lecture du buffer dans le registre UDR
 	return UDR1;
 }

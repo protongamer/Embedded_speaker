@@ -2,7 +2,7 @@
  * routines.h
  *
  * Created: 26/01/2022 23:32:15
- *  Author: gordon
+ *  Author: enzo
  */ 
 
 
@@ -126,7 +126,13 @@
 ///////////////////////////////////
 
 
+//////////////////////////////////////////////
+//Other stuff
 
+#define CONSOLE_MESSAGE "Console mode :\n 1 - Set bluetooth ID\n 2 - Write config (make sure BM64 is on Flash IBDK mode)\n 3 - Exit\n"
+
+
+/////////////////////////////////////////////
 
 
 #endif /* INCFILE1_H_ */
