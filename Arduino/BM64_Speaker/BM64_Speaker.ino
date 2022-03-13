@@ -1,13 +1,13 @@
 /*************************************************************
-*	Embedded Speaker - Master EEA ESET Project				 *
-*	Supposed to work on ATtiny841 (for now)					 *
-*															 *
-*	Code written by Gordon Freeman							 *
-*	Uh ? No ! Not freeman fool I am	:p					 	 *
-*															 *
-*															 *
-*	Code written (for real) by Enzo Niro					 *
-*															 *
+*	Embedded Speaker - Master EEA ESET Project                 *
+*	Supposed to work on ATtiny841 (for now)                    *
+*													                              		 *
+*	Code written by Gordon Freeman                             *
+*	Uh ? No ! Not freeman fool I am	:p                         *
+*															                               *
+*															                               *
+*	Code written (for real) by Enzo Niro                       *
+*															                               *
 *************************************************************/
 
 
@@ -22,9 +22,11 @@
 #endif
 
 
+#define THRESHOLD_TRIG    900
 
 
-HBM64 bm64(&Serial1, RX_IND);
+
+HBM64 bm64(&Serial, RX_IND);
 
 
 char resetLog[52], buf[21];
@@ -35,18 +37,22 @@ uint16_t averageValue;
 
 
 
+
+
 void setup()
 {
-  Serial.begin(9600);
+  Serial1.begin(9600);
+  //Serial.begin(124000);
+  Reset_WDT(); //prevent watchdog reset during sequence
   showResetCause(resetLog);
-  Serial.println(resetLog);
-  delay(1000);
-  
+  Serial1.println(resetLog);
+  delay(500);
+
   SELECT_REFERENCE_VOLTAGE(SET_4V1_REFERENCE); //put 4.096v reference
   //set pins
   pinMode(TRIGGER_MUX, OUTPUT);
   pinMode(BUILTIN_LED, OUTPUT);
-  pinMode(BOOT_MODE, INPUT_PULLUP);
+  pinMode(RX_IND, OUTPUT);
 
   for (uint8_t i = 0; i < 2; i++)
   {
@@ -59,15 +65,11 @@ void setup()
 
   Enable_WatchDog(SET_256K_CYCLES); //release the hounds (said mister burn)
 
-  Reset_WDT(); //prevent watchdog reset during sequence
-  bm64.init(BM64_PORT_SPEED);
-  //put ack code (here)
-
-  //Once ack is get, launch pairing
-  bm64.pairing();
-  //again put ack read (here)
   
-  //Once ack is get, let's go !
+  Reset_WDT(); //prevent watchdog reset during sequence
+  bm64.init(BM64_PORT_SPEED, NO_CFG);
+  Reset_WDT(); //prevent watchdog reset during sequence 
+  bm64.pairing(); //Once ack is get, launch pairing
 
 
 }
@@ -90,12 +92,14 @@ void loop()
     j--;
   }
   averageValue /= DAMPER_BUFFER; //divide might slow the loop...
-  sprintf(buf, "EEA -> . . ._\t %d  %d\r\n", averageValue, ADC_BUFFER[0]); 
-  Serial.print(buf);
+  sprintf(buf, "EEA -> . . ._\t %d  %d\r\n", averageValue, ADC_BUFFER[0]);
+  Serial1.print(buf);
   counter++;
+
+  if (averageValue >= THRESHOLD_TRIG)
+    digitalWrite(TRIGGER_MUX, HIGH);
+  else
+    digitalWrite(TRIGGER_MUX, LOW);
+
   delay(10);
 }
-
-
-
-

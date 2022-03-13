@@ -19,7 +19,3 @@ void showResetCause(char *_localStr);
 #ifdef __cplusplus
 }
 #endif
-
-
-
-

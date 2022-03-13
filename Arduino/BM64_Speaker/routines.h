@@ -13,6 +13,8 @@
 #define FIXED_SPEED_6 57600 //7
 #define FIXED_SPEED_7 115200 //3
 
+#define ARDUINO_PORT_SPEED  124000
+
 //Values calculated "a la mano" to store in EEPROM (Might print values calculated by uP)
 #define H2400_PRESET  207
 #define H4800_PRESET  103
@@ -22,8 +24,7 @@
 #define H57600_PRESET 7
 #define H115200_PRESET  3
 
-#define BM64_PORT_SPEED   FIXED_SPEED_7 //That sould be fine
-#define BAUDRATE_VALUE  F_CPU / BM64_PORT_SPEED / 16 - 1 //EQUAAAATION to calculate UBRR value (for UBRRL and UBRRH registers -> datasheet p.163) -> fosc / (16*Baud_value) - 1
+#define BM64_PORT_SPEED   ARDUINO_PORT_SPEED //That sould be fine
 
 ///////////////////////////////////
 
@@ -103,11 +104,11 @@
 ////////////////////////////////////
 //I/O PINS
 
-#define TRIGGER_MUX     10
-#define BOOT_MODE       11
-#define BUILTIN_LED     13
-#define RX_IND          2
-#define TX_IND          3
-#define ANALOG_PIN      A0
+#define TRIGGER_MUX     8 //PB2
+//#define BOOT_MODE       11
+#define BUILTIN_LED     7 //PA7
+#define RX_IND          3 //PA3
+#define TX_IND          0 //PA0
+#define ANALOG_PIN      A11 //PB0
 
 ///////////////////////////////////

@@ -3,7 +3,6 @@
 
 void Enable_WatchDog(uint8_t time_preset)
 {
-  MCUSR = 0; //reset status register
   WDTCSR = (1 << WDE) | time_preset; //Enable watchdog - and set preset on prescaler
 }
 
@@ -20,7 +19,3 @@ void showResetCause(char *_localStr) //80 characters max
                                                       (resetReg & POR_FLAG) == POR_FLAG ? POR_MESSAGE : "."
                                                       );
 }
-
-
-
-
