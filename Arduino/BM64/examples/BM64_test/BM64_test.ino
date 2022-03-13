@@ -26,7 +26,7 @@ void setup()
 	
 	Serial.print("Wakeup BM64...");
 	
-	bm64.init(115200, NO_CFG);
+	bm64.init(124000, NO_MODE); //Mean 115200 in arduino
   
 	Serial.print("Put BM64 in pairing...");
 

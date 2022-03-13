@@ -1,3 +1,10 @@
+/*
+Library to control BM64 from microchip with an Arduino 
+Written by Enzo Niro
+*/
+
+
+
 #include <Arduino.h>
 #include <SoftwareSerial.h>
 
@@ -60,10 +67,10 @@ class HBM64 {
 
     HBM64(HardwareSerial *S, uint8_t pin);
     
-	virtual void write(uint8_t v);
-	virtual void init(uint32_t bauds, uint8_t cfg);
-	virtual int read(void);
-	virtual void readCmd(uint8_t *buffer);
+	void write(uint8_t v);
+	void init(uint32_t bauds, uint8_t cfg);
+	int read(void);
+	void readCmd(uint8_t *buffer);
 	
     void pairing(void);
     void sendCmd(uint8_t *buffer, uint8_t n);
@@ -74,7 +81,9 @@ class HBM64 {
 	int toto(void);
 
   private:
-
+	
+	void flushSerial(void);
+	
     HardwareSerial *_serialObj;
     uint8_t _RxiPin;
 	uint8_t _serialType;
@@ -107,6 +116,8 @@ class SBM64 {
 	int toto(void);
 
   private:
+  
+	void flushSerial(void);
 
 	SoftwareSerial *_serialObj;
     uint8_t _RxiPin;

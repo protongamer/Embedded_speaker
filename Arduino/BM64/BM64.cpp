@@ -20,12 +20,19 @@ SBM64::SBM64(SoftwareSerial *S, uint8_t pin)
 
 void HBM64::pairing(void)
 {
-  for (uint8_t i = 0; i < sizeof(_bm64_cmd_pairing); i++)
-  {
-    write(pgm_read_byte(&_bm64_cmd_pairing[i]));
-    delayMicroseconds(100);
-  }
-
+	do
+	{
+		for (uint8_t i = 0; i < sizeof(_bm64_cmd_pairing); i++)
+		{
+			_serialObj->write(pgm_read_byte(&_bm64_cmd_pairing[i]));
+			delayMicroseconds(100);
+		}
+	} while(!(_serialObj->available() > 0)) ;
+	
+	
+	delay(250);
+	flushSerial();
+	delay(100);
 }
 
 
@@ -35,7 +42,7 @@ void HBM64::sendCmd(uint8_t *buffer, uint8_t n)
 {
   for (uint8_t i = 0; i < n; i++)
   {
-    write(buffer[i]);
+    _serialObj->write(buffer[i]);
     delayMicroseconds(100);
   }
 }
@@ -64,12 +71,17 @@ uint8_t HBM64::checksum(uint8_t *buffer, uint8_t n)
 
 void SBM64::pairing(void)
 {
-  for (uint8_t i = 0; i < sizeof(_bm64_cmd_pairing); i++)
-  {
-    write(pgm_read_byte(&_bm64_cmd_pairing[i]));
-    delayMicroseconds(100);
-  }
-
+	while(!(_serialObj->available() > 0)) 
+	{
+		for (uint8_t i = 0; i < sizeof(_bm64_cmd_pairing); i++)
+		{
+			_serialObj->write(pgm_read_byte(&_bm64_cmd_pairing[i]));
+			delayMicroseconds(100);
+		}
+	}
+	delay(250);
+	flushSerial();
+	delay(100);
 }
 
 
@@ -79,7 +91,7 @@ void SBM64::sendCmd(uint8_t *buffer, uint8_t n)
 {
   for (uint8_t i = 0; i < n; i++)
   {
-    write(buffer[i]);
+    _serialObj->write(buffer[i]);
     delayMicroseconds(100);
   }
 }
@@ -118,7 +130,6 @@ void HBM64::init(uint32_t bauds, uint8_t cfg)
   _serialObj->begin(bauds); //init port
   pinMode(_RxiPin, OUTPUT);
   
-  
 
 
   ////////////////////////////////////
@@ -129,24 +140,44 @@ void HBM64::init(uint32_t bauds, uint8_t cfg)
 
   ///////////////////////////////////
 
-  delay(5000); //wait a bit (after a long snozze you know)
+  delay(1000); //wait a bit (after a long snozze you know)
 
   //It is time now to launch process
   
   
-  if(cfg != NO_CFG)
+  if(cfg == NO_CFG)
   {
 	
-	for (uint8_t i = 0; i < sizeof(_bm64_cmd_btn_press); i++)
+	
+	do
 	{
-		//write(pgm_read_byte(&_bm64_cmd_btn_press[i]));
-		delayMicroseconds(100);
-	}
-	for (uint8_t i = 0; i < sizeof(_bm64_cmd_btn_unpress); i++)
+		for (uint8_t i = 0; i < sizeof(_bm64_cmd_btn_press); i++)
+		{
+			_serialObj->write(pgm_read_byte(&_bm64_cmd_btn_press[i]));
+			delayMicroseconds(100);
+		}
+		delay(250);
+	}while(!(_serialObj->available() > 0)) ;
+	
+	delay(250);
+	flushSerial(); //add reading bytes method
+	delay(100);
+	
+	
+	do
 	{
-		//write(pgm_read_byte(&_bm64_cmd_btn_unpress[i]));
-		delayMicroseconds(100);
-	}  
+		for (uint8_t i = 0; i < sizeof(_bm64_cmd_btn_unpress); i++)
+		{
+			_serialObj->write(pgm_read_byte(&_bm64_cmd_btn_unpress[i]));
+			delayMicroseconds(100);
+		}  
+		delay(250);
+	}while(!(_serialObj->available() > 0)) ;
+	
+	
+	delay(250);
+	flushSerial(); //add reading bytes method
+	delay(100);
 	
   }
 
@@ -159,7 +190,6 @@ void SBM64::init(uint32_t bauds, uint8_t cfg)
   _serialObj->begin(bauds); //init port
   pinMode(_RxiPin, OUTPUT);
   
-  
 
 
   ////////////////////////////////////
@@ -170,24 +200,44 @@ void SBM64::init(uint32_t bauds, uint8_t cfg)
 
   ///////////////////////////////////
 
-  delay(5000); //wait a bit (after a long snozze you know)
+  delay(1000); //wait a bit (after a long snozze you know)
 
   //It is time now to launch process
   
   
-  if(cfg != NO_CFG)
+  if(cfg == NO_CFG)
   {
 	
-	for (uint8_t i = 0; i < sizeof(_bm64_cmd_btn_press); i++)
+	
+	do
 	{
-		//write(pgm_read_byte(&_bm64_cmd_btn_press[i]));
-		delayMicroseconds(100);
-	}
-	for (uint8_t i = 0; i < sizeof(_bm64_cmd_btn_unpress); i++)
+		for (uint8_t i = 0; i < sizeof(_bm64_cmd_btn_press); i++)
+		{
+			_serialObj->write(pgm_read_byte(&_bm64_cmd_btn_press[i]));
+			delayMicroseconds(100);
+		}
+		delay(250);
+	}while(!(_serialObj->available() > 0)) ;
+	
+	delay(250);
+	flushSerial(); //add reading bytes method
+	delay(100);
+	
+	
+	do
 	{
-		//write(pgm_read_byte(&_bm64_cmd_btn_unpress[i]));
-		delayMicroseconds(100);
-	}  
+		for (uint8_t i = 0; i < sizeof(_bm64_cmd_btn_unpress); i++)
+		{
+			_serialObj->write(pgm_read_byte(&_bm64_cmd_btn_unpress[i]));
+			delayMicroseconds(100);
+		}  
+		delay(250);
+	}while(!(_serialObj->available() > 0)) ;
+	
+	
+	delay(250);
+	flushSerial(); //add reading bytes method
+	delay(100);
 	
   }
 
@@ -255,4 +305,30 @@ void SBM64::readCmd(uint8_t *buffer)
     n++;
   }
   return n;
+}
+
+
+
+////////////////////////////////////////
+//method to dump serial buffer
+
+
+
+void HBM64::flushSerial(void)
+{
+	while(_serialObj->available() > 0)
+	{
+		char dump = _serialObj->read(); 
+	}
+}
+
+
+
+
+void SBM64::flushSerial(void)
+{
+	while(_serialObj->available() > 0)
+	{
+		char dump = _serialObj->read();
+	}
 }

@@ -81,7 +81,7 @@ void setup()
 {
 	Serial.begin(9600);
 	
-	bm64.init(115200, CFG_MODE);
+	bm64.init(124000, CFG_MODE); //Mean 115200 in arduino
   
   
 	//Write process
