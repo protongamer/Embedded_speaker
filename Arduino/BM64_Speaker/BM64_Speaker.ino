@@ -92,14 +92,17 @@ void loop()
     j--;
   }
   averageValue /= DAMPER_BUFFER; //divide might slow the loop...
-  sprintf(buf, "EEA -> . . ._\t %d  %d\r\n", averageValue, ADC_BUFFER[0]);
-  Serial1.print(buf);
+  //sprintf(buf, "EEA -> . . ._\t %d  %d\r\n", averageValue, ADC_BUFFER[0]);
+  //Serial1.print(buf);
   counter++;
-
+  Serial1.println(averageValue);
   if (averageValue >= THRESHOLD_TRIG)
+  {
     digitalWrite(TRIGGER_MUX, HIGH);
+  }
   else
+  {
     digitalWrite(TRIGGER_MUX, LOW);
-
+  }
   delay(10);
 }
