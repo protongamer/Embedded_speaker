@@ -36,7 +36,8 @@ uint16_t j;
 uint16_t averageValue;
 
 
-
+uint8_t NSPK_MODE[7] = {BM64_START_BYTE, 0x00, 0x03, 0x02, 0x00, 0xF4, 0x07};
+uint8_t TRIG_SLAVE[7] = {BM64_START_BYTE, 0x00, 0x03, 0x02, 0x00, 0xE1, 0x1A};
 
 
 void setup()
@@ -54,14 +55,45 @@ void setup()
   pinMode(BUILTIN_LED, OUTPUT);
   pinMode(RX_IND, OUTPUT);
 
-  for (uint8_t i = 0; i < 2; i++)
+  /*for (uint8_t i = 0; i < 2; i++)
   {
     digitalWrite(BUILTIN_LED, true);
     delay(100);
     digitalWrite(BUILTIN_LED, false);
     delay(100);
-  }
+  }*/
 
+
+  ////////////////////////////////////////////
+  //Easter egg sequence
+  digitalWrite(BUILTIN_LED, true);
+  delay(50);
+  digitalWrite(BUILTIN_LED, false);
+  delay(500);
+
+  digitalWrite(BUILTIN_LED, true);
+  delay(50);
+  digitalWrite(BUILTIN_LED, false);
+  delay(100);
+  digitalWrite(BUILTIN_LED, true);
+  delay(50);
+  digitalWrite(BUILTIN_LED, false);
+  delay(100);
+  digitalWrite(BUILTIN_LED, true);
+  delay(50);
+  digitalWrite(BUILTIN_LED, false);
+  delay(500);
+
+  digitalWrite(BUILTIN_LED, true);
+  delay(50);
+  digitalWrite(BUILTIN_LED, false);
+  delay(500);
+
+  digitalWrite(BUILTIN_LED, true);
+  delay(250);
+  digitalWrite(BUILTIN_LED, false);
+  delay(500);
+  ////////////////////////////////////////////
 
   Enable_WatchDog(SET_256K_CYCLES); //release the hounds (said mister burn)
 
@@ -70,8 +102,15 @@ void setup()
   bm64.init(BM64_PORT_SPEED, NO_CFG);
   Reset_WDT(); //prevent watchdog reset during sequence 
   bm64.pairing(); //Once ack is get, launch pairing
-
-
+  /*bm64.sendCmd(NSPK_MODE, 7);
+  delay(250);
+  bm64.sendCmd(NSPK_MODE, 7);
+  delay(250);
+  Reset_WDT(); //prevent watchdog reset during sequence 
+  bm64.sendCmd(TRIG_SLAVE, 7);
+  delay(250);
+  bm64.sendCmd(TRIG_SLAVE, 7);
+  delay(250);*/
 }
 
 
