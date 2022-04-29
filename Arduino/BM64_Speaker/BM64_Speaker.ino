@@ -97,7 +97,7 @@ void setup()
 
 
   Reset_WDT(); //prevent watchdog reset during sequence
-  bm64.init(BM64_PORT_SPEED, NO_CFG);
+  bm64.init(BM64_PORT_SPEED, NO_CFG); //no need to configure parameters
   Reset_WDT(); //prevent watchdog reset during sequence
   bm64.pairing(); //Once ack is get, launch pairing
   delay(250);
