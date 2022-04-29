@@ -10,6 +10,12 @@
 *															                               *
 *************************************************************/
 
+/*  This is a prototype ! Not a finished product
+ * TODO :
+ * - Finish NSPK MODE (master/slave mode)
+ * 
+ * 
+ */
 
 
 #include <BM64.h>
@@ -35,6 +41,11 @@ uint8_t counter = 0;
 uint16_t ADC_BUFFER[DAMPER_BUFFER];
 uint16_t j;
 uint16_t averageValue;
+
+
+uint8_t NSPK_MODE[7] = {BM64_START_BYTE, 0x00, 0x03, 0x02, 0x00, 0xF4, 0x07};
+uint8_t TRIG_SLAVE[7] = {BM64_START_BYTE, 0x00, 0x03, 0x02, 0x00, 0xE1, 0x1A};
+uint8_t TRIG_MASTER[7] = {BM64_START_BYTE, 0x00, 0x03, 0x02, 0x00, 0xE0, 0x1B};
 
 
 void setup()
@@ -99,7 +110,45 @@ void setup()
   Reset_WDT(); //prevent watchdog reset during sequence
   bm64.init(BM64_PORT_SPEED, NO_CFG);
   Reset_WDT(); //prevent watchdog reset during sequence
-  bm64.pairing(); //Once ack is get, launch pairing
+
+
+  if (digitalRead(NSPK_PIN))
+  {
+    bm64.sendCmd(TRIG_SLAVE, 7);
+    delay(250);
+    bm64.sendCmd(TRIG_SLAVE, 7);
+    delay(250);
+    bm64.sendCmd(TRIG_SLAVE, 7);
+    delay(250);
+  }
+  else
+  {
+    bm64.pairing(); //Once ack is get, launch pairing
+    Reset_WDT(); //prevent watchdog reset during sequence
+    delay(250);
+
+    bm64.flushSerial();
+    delay(500);
+
+    while (!(Serial.available() > 0)) // wait someone to connect on this device
+    {
+      Reset_WDT();
+      delay(250);
+    }
+
+    bm64.sendCmd(TRIG_MASTER, 7);
+    delay(250);
+    bm64.sendCmd(TRIG_MASTER, 7);
+    delay(250);
+    bm64.sendCmd(TRIG_MASTER, 7);
+    delay(250);
+  }
+
+  Reset_WDT(); //prevent watchdog reset during sequence
+
+  bm64.sendCmd(NSPK_MODE, 7);
+  delay(250);
+  bm64.sendCmd(NSPK_MODE, 7);
   delay(250);
   Reset_WDT(); //prevent watchdog reset during sequence
 
