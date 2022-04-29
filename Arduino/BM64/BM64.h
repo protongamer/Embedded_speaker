@@ -78,11 +78,11 @@ class HBM64 {
     //uint8_t bm64_status(void);
     uint8_t checksum(uint8_t *buffer, uint8_t n);
 
-	int toto(void);
+	void flushSerial(void);
 
   private:
 	
-	void flushSerial(void);
+	
 	
     HardwareSerial *_serialObj;
     uint8_t _RxiPin;
@@ -113,7 +113,6 @@ class SBM64 {
     //uint8_t bm64_status(void);
     uint8_t checksum(uint8_t *buffer, uint8_t n);
 
-	int toto(void);
 
   private:
   

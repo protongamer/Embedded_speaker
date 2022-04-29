@@ -27,10 +27,11 @@ void HBM64::pairing(void)
 			_serialObj->write(pgm_read_byte(&_bm64_cmd_pairing[i]));
 			delayMicroseconds(100);
 		}
+		delay(250);
 	} while(!(_serialObj->available() > 0)) ;
 	
 	
-	delay(250);
+	
 	flushSerial();
 	delay(100);
 }
@@ -78,8 +79,8 @@ void SBM64::pairing(void)
 			_serialObj->write(pgm_read_byte(&_bm64_cmd_pairing[i]));
 			delayMicroseconds(100);
 		}
+		delay(250);
 	}
-	delay(250);
 	flushSerial();
 	delay(100);
 }
