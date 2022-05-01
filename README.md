@@ -1,5 +1,7 @@
 # Embedded_speaker
 
+Project made in UT3 university
+
 Warning : prototype state !
 
 Target uC: Attiny841
