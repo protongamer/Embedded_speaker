@@ -127,13 +127,13 @@ void loop()
   //Serial1.print(buf);
   counter++;
   Serial1.println(averageValue);
-  if (averageValue >= THRESHOLD_TRIG)
+  if (averageValue >= THRESHOLD_TRIG) //switch to jack (with ULN2003)
   {
-    digitalWrite(TRIGGER_MUX, HIGH);
+    digitalWrite(TRIGGER_MUX, LOW);
   }
   else
   {
-    digitalWrite(TRIGGER_MUX, LOW);
+    digitalWrite(TRIGGER_MUX, HIGH);
   }
   delay(10);
 }
