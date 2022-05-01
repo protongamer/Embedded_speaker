@@ -18,4 +18,4 @@ create an embedded stereo bluetooth speaker (connected to each one).
 For more information about BM64, see here :
 https://www.microchip.com/en-us/product/BM64
 
-[img]https://github.com/protongamer/Embedded_speaker/blob/main/IMG_20220430_195704.jpg?raw=true[/img]
+![alt text](https://github.com/protongamer/Embedded_speaker/blob/main/IMG_20220430_195704.jpg?raw=true)
